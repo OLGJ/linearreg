@@ -1,11 +1,12 @@
 Package: linearreg
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Linear regression
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+URL: https://github.com/OLGJ/linearreg
+BugReports: https://github.com/OLGJ/linearreg/issues
+Author: Olof Josefsson
+Maintainer: olofjosefsson123@gmail.com
+Description: Linear regression package
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
