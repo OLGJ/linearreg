@@ -16,11 +16,11 @@
 #'
 #' @field Several statistics.
 #' @docType package
-#' @ImportFrom ggplot2 ggplot
-#' @import methods
+#' @ggplot2
 #' @export linreg
 #' @exportClass linreg
-library(ggplot2)
+NULL
+
 linreg <- setRefClass(
   "linreg",
   fields = list(
