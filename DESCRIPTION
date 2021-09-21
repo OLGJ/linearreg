@@ -4,8 +4,9 @@ Title: Linear regression
 Version: 0.1.0
 URL: https://github.com/OLGJ/linearreg
 BugReports: https://github.com/OLGJ/linearreg/issues
-Author: Olof Josefsson
-Maintainer: olofjosefsson123@gmail.com
+Author: person("Olof", "Josefsson", email = "olofjosefsson123@gmail.com",
+                  role = c("aut", "cre"))
+Maintainer: Olof Josefsson <olofjosefsson123@gmail.com>
 Description: Linear regression package
 License: GPL-3
 Encoding: UTF-8

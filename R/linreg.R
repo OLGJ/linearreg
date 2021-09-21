@@ -1,4 +1,4 @@
-#' @title Linear regression
+#' @title Linreg
 #' @param formula Formula for the linear regression.
 #' @param data A dataframe with observations.
 #' @return This package returns many statistics.
