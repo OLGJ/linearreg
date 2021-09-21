@@ -1,5 +1,4 @@
-#' Linear regression
-#'
+#' @title Linear regression
 #' @param formula Formula for the linear regression.
 #' @param data A dataframe with observations.
 #' @return This package returns many statistics.
@@ -14,7 +13,10 @@
 #'  \item{P.Values}{The p-values for each coefficient}
 #'  \item{call}{The arguments used to call the function}
 #' }
-#' @Import ggplot from ggplot2
+#'
+#' @field Several statistics.
+#' @docType package
+#' @ImportFrom ggplot2 ggplot
 #' @import methods
 #' @export linreg
 #' @exportClass linreg
@@ -165,6 +167,5 @@ linreg <- setRefClass(
     })
 
   )
-a <- linreg(Petal.Length~Species, data = iris)
-a$plot()
+
 
