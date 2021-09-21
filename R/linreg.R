@@ -1,4 +1,5 @@
 #' @title Linreg
+#' @name linreg
 #' @param formula Formula for the linear regression.
 #' @param data A dataframe with observations.
 #' @return This package returns many statistics.
@@ -13,10 +14,9 @@
 #'  \item{P.Values}{The p-values for each coefficient}
 #'  \item{call}{The arguments used to call the function}
 #' }
-#'
+#' @import ggplot2
 #' @field Several statistics.
 #' @docType package
-#' @ggplot2
 #' @export linreg
 #' @exportClass linreg
 NULL
@@ -53,7 +53,7 @@ linreg <- setRefClass(
       .self$regression.coefficients = Xt_X_i %*% Xt_y # Regression coeff
       .self$fitted.values = X %*% .self$regression.coefficients # Fitted values
       .self$residuals = yvals - .self$fitted.values # Residuals
-      .self$df = nrow(X)-length(attr(X,"assign")) # Degrees of freedom
+      .self$df = nrow(X)-ncol(X) # Degrees of freedom
       .self$residual.variance = c((t(.self$residuals)%*%.self$residuals)/.self$df) # Residual variance
       .self$variance.regression.coefficients = .self$residual.variance * Xt_X_i #Var(^B)
 
