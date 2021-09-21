@@ -2,6 +2,7 @@
 # linearreg
 
 <!-- badges: start -->
+[![Build Status](https://app.travis-ci.com/OLGJ/linearreg.svg?branch=master)](https://app.travis-ci.com/OLGJ/linearreg)
 <!-- badges: end -->
 
 The goal of linearreg is to ...
