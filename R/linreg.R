@@ -34,7 +34,8 @@ linreg <- setRefClass(
     variance.regression.coefficients = "matrix",
     t.vals = "matrix",
     p.vals = "matrix",
-    call = "character"
+    call = "character",
+    sq.coeff = "numeric"
 
   ),
   methods = list(
@@ -57,18 +58,18 @@ linreg <- setRefClass(
       .self$residual.variance = c((t(.self$residuals)%*%.self$residuals)/.self$df) # Residual variance
       .self$variance.regression.coefficients = .self$residual.variance * Xt_X_i #Var(^B)
 
-      sq_coeff <- sqrt(diag(.self$variance.regression.coefficients))
+      .self$sq.coeff <- sqrt(diag(.self$variance.regression.coefficients))
 
-      .self$t.vals = .self$regression.coefficients/sq_coeff # T-values
-      .self$p.vals = pt(.self$t.vals, .self$df) # P-values
+      .self$t.vals = .self$regression.coefficients/.self$sq.coeff # T-values
+      .self$p.vals = pt(-abs(.self$t.vals), .self$df) # P-values
 
       .self$call = c(deparse(substitute(formula)), deparse(substitute(data)))
 
     },
-    show = function(){
+    print = function(){
 
       # Call
-      call_label <- paste0("\n", "Call:\n", "lm(formula",call[1],", data = ",
+      call_label <- paste0("\n", "Call:\n", "linreg(formula = ",call[1],", data = ",
                            call[2],")", "\n\n")
       cat(call_label)
       # Coefficients
@@ -104,14 +105,13 @@ linreg <- setRefClass(
       coef_vector <- c(.self$regression.coefficients)
       names(coef_vector) <- c(rnames)
 
-      sum_dir <- data.frame( coef_vector,
-                            c(.self$t.vals),
-                            c(.self$p.vals),
-                            c(.self$df))
+      sum_dir <- data.frame("Coefficients" = round(coef_vector,5),
+                            "Std Error" = round(c(.self$sq.coeff), 4),
+                            "t-values" = round(c(.self$t.vals),3),
+                            "p-values" = signif(c(.self$p.vals),3),
+                            "df" = c(.self$df))
+      print.data.frame(sum_dir)
 
-      colnames(sum_dir) = c("Coefficients","t-values", "p-values", "df")
-
-      print(sum_dir)
     },
     plot = function(){
       # Bottom label for both plots

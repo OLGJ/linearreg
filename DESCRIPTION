@@ -4,8 +4,19 @@ Title: Linreg
 Version: 0.1.0
 URL: https://github.com/OLGJ/linearreg
 BugReports: https://github.com/OLGJ/linearreg/issues
-Author: person("Olof", "Josefsson", email = "olofjosefsson123@gmail.com",
-                  role = c("aut", "cre"))
+Authors@R: c(
+  person("Amer",
+         "Memic",
+         email = "ameme698@student.liu.se",
+         role = c("cre", "aut")),
+  person("Olof",
+         "Josefsson",
+         email = "olojo524@student.liu.se",
+         role = "aut"),
+  person("Shahreen",
+         "Saleem",
+         email = "shahreen.saleem111@gmail.com",
+         role = "aut"))
 Maintainer: Olof Josefsson <olofjosefsson123@gmail.com>
 Description: Linear regression package
 License: GPL-3
@@ -18,4 +29,4 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-Import: ggplot2
+Depends: ggplot2
