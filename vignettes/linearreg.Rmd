@@ -1,13 +1,14 @@
 ---
-title: "linreg"
+title: "linearreg"
+author: "Olof"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{linreg}
+  %\VignetteIndexEntry{linearreg}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-# This is an vignette for the linreg package. 
+# This is a vignette for the linreg package. 
 
 The linreg package contains a ReferenceClass which provides some basic statistical
 methods. The code for how these statistics are calculated and implemented in the 
@@ -30,7 +31,7 @@ a$residuals
 # It's possible to press tab after a$ to get an overview.
 
 # To access the methods of the package you proceed in a similar fashion.
-# Unless it's print(a), access of the methods can be done via:
+# Accessing the methods can be done via:
 a$summary()
 
 ```

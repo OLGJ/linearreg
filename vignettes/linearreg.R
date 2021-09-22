@@ -13,7 +13,7 @@ a$residuals
 # It's possible to press tab after a$ to get an overview.
 
 # To access the methods of the package you proceed in a similar fashion.
-# Unless it's print(a), access of the methods can be done via:
+# Accessing the methods can be done via:
 a$summary()
 
 

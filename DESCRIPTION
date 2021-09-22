@@ -18,7 +18,7 @@ Authors@R: c(
          email = "shahreen.saleem111@gmail.com",
          role = "aut"))
 Maintainer: Olof Josefsson <olofjosefsson123@gmail.com>
-Description: Linear regression package
+Description: Linear regression package.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -30,3 +30,4 @@ Suggests:
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 Depends: ggplot2
+Imports: methods

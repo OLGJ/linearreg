@@ -1,24 +1,26 @@
 #' @title Linreg
+#' @description Linear regression package in R.
 #' @name linreg
 #' @param formula Formula for the linear regression.
 #' @param data A dataframe with observations.
-#' @return This package returns many statistics.
-#' \describe{
-#'  \item{Regression.Coefficient}{Regressions coefficients}
-#'  \item{Fitted.Values}{The fitted values}
-#'  \item{Residuals}{The residuals}
-#'  \item{df}{The degrees of freedom}
-#'  \item{Residual.Variance}{The residual variance}
-#'  \item{Variance.B}{The variance of the regression coefficients}
-#'  \item{T.Values}{The t-values for each coefficient}
-#'  \item{P.Values}{The p-values for each coefficient}
-#'  \item{call}{The arguments used to call the function}
-#' }
 #' @import ggplot2
-#' @field Several statistics.
-#' @docType package
-#' @export linreg
-#' @exportClass linreg
+#' @importFrom methods new
+#' @field formula formula.
+#' @field data data.frame.
+#' @field regression.coefficients matrix.
+#' @field fitted.values matrix.
+#' @field residuals matrix.
+#' @field df numeric.
+#' @field residual.variance numeric.
+#' @field variance.regression.coefficients matrix.
+#' @field t.vals matrix.
+#' @field p.vals matrix.
+#' @field call character.
+#' @field sq.coeff numeric.
+#'
+#' @docType class
+#' @export
+
 NULL
 
 linreg <- setRefClass(
@@ -40,6 +42,7 @@ linreg <- setRefClass(
   ),
   methods = list(
     initialize = function(formula, data){
+      "Initialization."
       .self$formula = formula
       .self$data = data
 
@@ -67,7 +70,7 @@ linreg <- setRefClass(
 
     },
     print = function(){
-
+      "Prints a short output of the linear regression."
       # Call
       call_label <- paste0("\n", "Call:\n", "linreg(formula = ",call[1],", data = ",
                            call[2],")", "\n\n")
@@ -83,37 +86,44 @@ linreg <- setRefClass(
 
     },
     resid = function(){
-      # Residuals as a vector
+      "Returns the residuals as a vector."
       resid_vector <- c(.self$residuals)
       return(resid_vector)
     },
     pred = function(){
-      # Returns predicted values of y in matrix form
+      "Returns the predicted values of y in matrix form"
       return(.self$fitted.values)
     },
     coef = function(){
-      # Coefficients as named vector
+      "Returns the coefficients as named vector"
       rnames <- row.names(.self$regression.coefficients)
       coef_vector <- c(.self$regression.coefficients)
       names(coef_vector) <- c(rnames)
       return(coef_vector)
     },
     summary = function(){
-
-      # Coefficients
+      "Prints a short summary with Coefficients, their std error, t- & p-vals."
       rnames <- row.names(.self$regression.coefficients)
       coef_vector <- c(.self$regression.coefficients)
       names(coef_vector) <- c(rnames)
 
-      sum_dir <- data.frame("Coefficients" = round(coef_vector,5),
-                            "Std Error" = round(c(.self$sq.coeff), 4),
-                            "t-values" = round(c(.self$t.vals),3),
-                            "p-values" = signif(c(.self$p.vals),3),
-                            "df" = c(.self$df))
-      print.data.frame(sum_dir)
 
+      sum_dir <- data.frame("Estimate" = round(coef_vector,5),
+                            "Std Error" = round(c(.self$sq.coeff), 5),
+                            "t value" = round(c(.self$t.vals),3),
+                            "p value" = sapply(.self$p.vals,
+                                          function(t) if(t < 0.001) {"***"}
+                                          else if(t < 0.01) {"**"}
+                                          else if(t < 0.05) {"*"}))
+
+      cat("Coefficients:\n")
+      print.data.frame(sum_dir)
+      resid.std <- sqrt(.self$residual.variance)
+      cat(paste("\nResidual standard error:",  round(resid.std, 2), "on", .self$df,
+                  "degrees of freedom"))
     },
     plot = function(){
+      "Generates plots."
       # Bottom label for both plots
       bot_label <- paste0("lm(",call[1],")")
 
@@ -167,5 +177,4 @@ linreg <- setRefClass(
     })
 
   )
-
 
