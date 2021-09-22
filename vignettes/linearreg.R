@@ -5,7 +5,7 @@ library(linearreg)
 a <- linreg(formula = Petal.Length~Species, data = iris)
 
 # To see an overview:
-print(a)
+a$print()
 
 # Or check out the built in .self$ variables
 a$residuals
